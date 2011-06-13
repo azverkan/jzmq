@@ -43,10 +43,17 @@
 		<maven-javadoc-plugin.version>2.7</maven-javadoc-plugin.version>
 		<maven-shade-plugin.version>1.4</maven-shade-plugin.version>
 		<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+		<maven-nar-plugin.version>2.1-SNAPSHOT</maven-nar-plugin.version>
 
 		<junit.version>4.8.2</junit.version>
 	</properties>
 
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Maven NAR Plugin</id>
+			<url>http://duns.github.com/maven-snapshots</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -169,8 +176,22 @@
 				</executions>
 			</plugin>
 
+			<plugin>
+				<artifactId>maven-nar-plugin</artifactId>
+				<version>${maven-nar-plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<libraries>
+						<library>
+							<type>jni</type>
+							<narSystemPackage>${groupId}</narSystemPackage>
+						</library>
+					</libraries>
+				</configuration>
+ 			</plugin>
+
 		</plugins>
 
 	</build>
-
+	
 </project>
